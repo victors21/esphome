@@ -23,9 +23,9 @@ extern "C" {
 #endif
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
 #include "LwipDhcpServer-NonOS.h"
-#define wifi_softap_set_dhcps_lease(lease) getNonOSDhcpServer().set_dhcps_lease(lease)
-#define wifi_softap_set_dhcps_lease_time(time) getNonOSDhcpServer().set_dhcps_lease_time(time)
-#define wifi_softap_set_dhcps_offer_option(offer, mode) getNonOSDhcpServer().set_dhcps_offer_option(offer, mode)
+#define wifi_softap_set_dhcps_lease(lease) //getNonOSDhcpServer().set_dhcps_lease(lease)
+#define wifi_softap_set_dhcps_lease_time(time) //getNonOSDhcpServer().set_dhcps_lease_time(time)
+#define wifi_softap_set_dhcps_offer_option(offer, mode) //getNonOSDhcpServer().set_dhcps_offer_option(offer, mode)
 #endif
 }
 
