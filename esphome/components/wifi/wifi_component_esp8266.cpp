@@ -22,10 +22,12 @@ extern "C" {
 #include <AddrList.h>
 #endif
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
+template<T,T1>
+bool fix3(T offer,T1 mode){return true;}
 #include "LwipDhcpServer-NonOS.h"
-#define wifi_softap_set_dhcps_lease(lease) template<T> inline bool fix1(T lease){return true;}//getNonOSDhcpServer().set_dhcps_lease(lease)
-#define wifi_softap_set_dhcps_lease_time(time) template<T> inline bool fix2(T time){return true;} //getNonOSDhcpServer().set_dhcps_lease_time(time)
-#define wifi_softap_set_dhcps_offer_option(offer, mode) template<T,T1> inline bool fix3(T offer,T1 mode){return true;} //getNonOSDhcpServer().set_dhcps_offer_option(offer, mode)
+#define wifi_softap_set_dhcps_lease(lease) getNonOSDhcpServer().set_dhcps_lease(lease)
+#define wifi_softap_set_dhcps_lease_time(time) getNonOSDhcpServer().setLeaseTime(time)
+#define wifi_softap_set_dhcps_offer_option(offer, mode) fix3(offer, mode) //getNonOSDhcpServer().set_dhcps_offer_option(offer, mode)
 #endif
 }
 
