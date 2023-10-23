@@ -23,9 +23,9 @@ extern "C" {
 #endif
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
 #include "LwipDhcpServer.h"
-#define wifi_softap_set_dhcps_lease(lease) dhcpSoftAP.set_dhcps_lease(lease)
-#define wifi_softap_set_dhcps_lease_time(time) dhcpSoftAP.set_dhcps_lease_time(time)
-#define wifi_softap_set_dhcps_offer_option(offer, mode) dhcpSoftAP.set_dhcps_offer_option(offer, mode)
+#define wifi_softap_set_dhcps_lease(lease) getNonOSDhcpServer().set_dhcps_lease(lease)
+#define wifi_softap_set_dhcps_lease_time(time) getNonOSDhcpServer().set_dhcps_lease_time(time)
+#define wifi_softap_set_dhcps_offer_option(offer, mode) getNonOSDhcpServer().set_dhcps_offer_option(offer, mode)
 #endif
 }
 
@@ -716,7 +716,7 @@ bool WiFiComponent::wifi_ap_ip_config_(optional<ManualIP> manual_ip) {
   }
 
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
-  dhcpSoftAP.begin(&info);
+  getNonOSDhcpServer().begin(&info);
 #endif
 
   struct dhcps_lease lease {};
