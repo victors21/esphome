@@ -716,7 +716,7 @@ bool WiFiComponent::wifi_ap_ip_config_(optional<ManualIP> manual_ip) {
   }
 
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
-  getNonOSDhcpServer().begin(&info);
+  //getNonOSDhcpServer().begin(&info);
 #endif
 
   struct dhcps_lease lease {};
