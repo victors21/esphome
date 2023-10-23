@@ -11,8 +11,7 @@
 #include <wpa2_enterprise.h>
 #endif
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
-template<class T>
-bool fix2(T tim){
+bool fix2(uint32_t tim){
   getNonOSDhcpServer().setLeaseTime(tim)
   return true;
 }
