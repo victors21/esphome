@@ -10,7 +10,10 @@
 #ifdef USE_WIFI_WPA2_EAP
 #include <wpa2_enterprise.h>
 #endif
-
+#if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
+template<T,T1>
+bool fix3(T offer,T1 mode){return true;}
+#endif
 extern "C" {
 #include "lwip/err.h"
 #include "lwip/dns.h"
@@ -22,8 +25,6 @@ extern "C" {
 #include <AddrList.h>
 #endif
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
-template<T,T1>
-bool fix3(T offer,T1 mode){return true;}
 #include "LwipDhcpServer-NonOS.h"
 #define wifi_softap_set_dhcps_lease(lease) getNonOSDhcpServer().set_dhcps_lease(lease)
 #define wifi_softap_set_dhcps_lease_time(time) getNonOSDhcpServer().setLeaseTime(time)
