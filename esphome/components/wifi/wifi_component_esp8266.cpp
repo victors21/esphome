@@ -35,9 +35,6 @@ extern "C" {
 #endif
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
 #include "LwipDhcpServer-NonOS.h"
-bool fix2(uint32_t tim){
-  return true;
-}
 #define wifi_softap_set_dhcps_lease(lease) fix1(lease)
 #define wifi_softap_set_dhcps_lease_time(time) fix2(time)
 #define wifi_softap_set_dhcps_offer_option(offer, mode) fix3(offer, mode) 
