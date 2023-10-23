@@ -12,6 +12,13 @@
 #endif
 
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
+template<class T>
+bool fix1(T leease){
+  return true;
+}
+bool fix2(uint32_t tim){
+  return true;
+}
 template<class T,class T1>
 bool fix3(T offer,T1 mode){return true;}
 #endif
@@ -29,12 +36,11 @@ extern "C" {
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
 #include "LwipDhcpServer-NonOS.h"
 bool fix2(uint32_t tim){
-  getNonOSDhcpServer().setLeaseTime(tim);
   return true;
 }
-#define wifi_softap_set_dhcps_lease(lease) getNonOSDhcpServer().set_dhcps_lease(lease)
+#define wifi_softap_set_dhcps_lease(lease) fix1(lease)
 #define wifi_softap_set_dhcps_lease_time(time) fix2(time)
-#define wifi_softap_set_dhcps_offer_option(offer, mode) fix3(offer, mode) //getNonOSDhcpServer().set_dhcps_offer_option(offer, mode)
+#define wifi_softap_set_dhcps_offer_option(offer, mode) fix3(offer, mode) 
 #endif
 }
 
