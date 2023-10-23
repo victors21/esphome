@@ -11,7 +11,12 @@
 #include <wpa2_enterprise.h>
 #endif
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
-template<T,T1>
+template<class T>
+bool fix2(T tim){
+  getNonOSDhcpServer().setLeaseTime(tim)
+  return true;
+}
+template<class T,class T1>
 bool fix3(T offer,T1 mode){return true;}
 #endif
 extern "C" {
@@ -27,7 +32,7 @@ extern "C" {
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(3, 0, 0)
 #include "LwipDhcpServer-NonOS.h"
 #define wifi_softap_set_dhcps_lease(lease) getNonOSDhcpServer().set_dhcps_lease(lease)
-#define wifi_softap_set_dhcps_lease_time(time) getNonOSDhcpServer().setLeaseTime(time)
+#define wifi_softap_set_dhcps_lease_time(time) fix2(time)
 #define wifi_softap_set_dhcps_offer_option(offer, mode) fix3(offer, mode) //getNonOSDhcpServer().set_dhcps_offer_option(offer, mode)
 #endif
 }
